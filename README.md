@@ -47,9 +47,9 @@ GuardIntent/
 |   |-- plugins/
 |   |-- enrichment/
 |   |-- integrations/
-|   \\-- reporting/
+|   `-- reporting/
 |-- plugins/
-|   \\-- sample_custom_rule.py
+|   `-- sample_custom_rule.py
 |-- data/
 |-- reports/
 |-- tests/
@@ -57,7 +57,7 @@ GuardIntent/
 |-- Dockerfile
 |-- config.yaml
 |-- PLAN.md
-\\-- pyproject.toml
+`-- pyproject.toml
 ```
 
 ## Install
