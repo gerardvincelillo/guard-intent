@@ -16,3 +16,7 @@ jira_user: null
 jira_api_token: null
 jira_project_key: null
 jira_issue_type: Task
+integration_timeout_seconds: 8
+integration_max_retries: 3
+integration_backoff_base_seconds: 0.5
+incident_grouping_window_seconds: 900

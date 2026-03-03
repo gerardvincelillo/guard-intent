@@ -11,6 +11,7 @@ class IOCMatchRule(BaseRule):
     name = "IOC Match"
     description = "Matches event fields against IOC feed values"
     mitre_techniques = ["T1595", "T1071.001", "T1105"]
+    mitre_tactics = ["Reconnaissance", "Command and Control"]
 
     def run(self, events: list[Event], config: Config, **kwargs) -> list[RuleHit]:
         iocs: dict[str, set[str]] = kwargs.get("iocs", {})
@@ -27,7 +28,9 @@ class IOCMatchRule(BaseRule):
                     evidence={"timestamp": event.timestamp, "matches": matches, "event": event.to_dict()},
                     recommendation="Block matched IOC and hunt for related activity.",
                     entities={"src_ip": event.src_ip, "user": event.username, "hostname": event.hostname},
+                    timestamp=event.timestamp,
                     mitre_techniques=self.mitre_techniques,
+                    mitre_tactics=self.mitre_tactics,
                 )
             )
         return hits

@@ -32,7 +32,9 @@ class RuleHit:
     evidence: dict[str, Any]
     recommendation: str
     entities: dict[str, Any]
+    timestamp: str | None = None
     mitre_techniques: list[str] = field(default_factory=list)
+    mitre_tactics: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -45,4 +47,7 @@ class Incident:
     evidence: list[dict[str, Any]]
     recommendations: list[str]
     mitre_techniques: list[str] = field(default_factory=list)
+    mitre_tactics: list[str] = field(default_factory=list)
+    first_seen: str | None = None
+    last_seen: str | None = None
     enrichments: dict[str, Any] = field(default_factory=dict)

@@ -10,14 +10,17 @@ def write_html_report(path: str | Path, incidents: list[Incident], run_meta: dic
     p = Path(path)
     cards: list[str] = []
     for incident in incidents:
-        tags = " ".join([f"<span class='tag'>{escape(t)}</span>" for t in incident.mitre_techniques]) or "<span class='tag'>N/A</span>"
+        tactics = " ".join([f"<span class='tag'>{escape(t)}</span>" for t in incident.mitre_tactics]) or "<span class='tag'>N/A</span>"
+        techniques = " ".join([f"<span class='tag'>{escape(t)}</span>" for t in incident.mitre_techniques]) or "<span class='tag'>N/A</span>"
         cards.append(
             """
             <article class='card'>
               <h3>{title}</h3>
               <p><strong>Severity:</strong> {severity} | <strong>Score:</strong> {score}</p>
               <p><strong>Rules:</strong> {rules}</p>
-              <p><strong>MITRE:</strong> {tags}</p>
+              <p><strong>First Seen:</strong> {first_seen} | <strong>Last Seen:</strong> {last_seen}</p>
+              <p><strong>MITRE Tactics:</strong> {tactics}</p>
+              <p><strong>MITRE Techniques:</strong> {techniques}</p>
               <p><strong>Entities:</strong> {entities}</p>
             </article>
             """.format(
@@ -25,7 +28,10 @@ def write_html_report(path: str | Path, incidents: list[Incident], run_meta: dic
                 severity=escape(incident.severity.upper()),
                 score=incident.score,
                 rules=escape(", ".join(incident.rule_hits)),
-                tags=tags,
+                first_seen=escape(incident.first_seen or "N/A"),
+                last_seen=escape(incident.last_seen or "N/A"),
+                tactics=tactics,
+                techniques=techniques,
                 entities=escape(str(incident.entities)),
             )
         )

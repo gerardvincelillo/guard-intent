@@ -22,6 +22,7 @@ class LateralMovementRule(BaseRule):
     name = "Lateral Movement Indicator"
     description = "Detects one source touching many internal hosts quickly"
     mitre_techniques = ["T1021", "T1210"]
+    mitre_tactics = ["Lateral Movement"]
 
     def run(self, events: list[Event], config: Config, **kwargs) -> list[RuleHit]:
         network_events = [e for e in events if e.src_ip and e.dst_ip and _is_internal_ip(e.dst_ip)]
@@ -46,7 +47,9 @@ class LateralMovementRule(BaseRule):
                             evidence={"src_ip": src_ip, "distinct_internal_hosts": sorted(distinct_hosts)},
                             recommendation="Investigate host for lateral movement and restrict east-west traffic.",
                             entities={"src_ip": src_ip},
+                            timestamp=event.timestamp,
                             mitre_techniques=self.mitre_techniques,
+                            mitre_tactics=self.mitre_tactics,
                         )
                     )
                     break

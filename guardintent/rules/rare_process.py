@@ -12,6 +12,7 @@ class RareProcessRule(BaseRule):
     name = "Rare Process Execution"
     description = "Flags processes that appear infrequently"
     mitre_techniques = ["T1059", "T1204"]
+    mitre_tactics = ["Execution", "User Execution"]
 
     def run(self, events: list[Event], config: Config, **kwargs) -> list[RuleHit]:
         process_events = [e for e in events if e.process_name]
@@ -29,7 +30,9 @@ class RareProcessRule(BaseRule):
                         evidence={"process_name": event.process_name, "seen_count": counts[process], "event": event.to_dict()},
                         recommendation="Validate process origin and isolate host if unauthorized.",
                         entities={"hostname": event.hostname, "user": event.username, "src_ip": event.src_ip},
+                        timestamp=event.timestamp,
                         mitre_techniques=self.mitre_techniques,
+                        mitre_tactics=self.mitre_tactics,
                     )
                 )
         return hits

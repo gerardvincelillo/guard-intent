@@ -11,6 +11,7 @@ class BaseRule(ABC):
     name: str
     description: str
     mitre_techniques: list[str] = []
+    mitre_tactics: list[str] = []
 
     @abstractmethod
     def run(self, events: list[Event], config: Config, **kwargs) -> list[RuleHit]:

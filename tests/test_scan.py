@@ -36,6 +36,7 @@ def test_scan_generates_reports(tmp_path: Path):
     payload = json.loads(json_reports[0].read_text(encoding="utf-8"))
     assert payload["incident_count"] >= 1
     assert any(incident["mitre_techniques"] for incident in payload["incidents"])
+    assert any(incident["mitre_tactics"] for incident in payload["incidents"])
 
 
 def test_scan_supports_html_and_plugin_rule(tmp_path: Path):

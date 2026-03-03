@@ -23,6 +23,10 @@ class Config:
     jira_api_token: str | None = None
     jira_project_key: str | None = None
     jira_issue_type: str = "Task"
+    integration_timeout_seconds: int = 8
+    integration_max_retries: int = 3
+    integration_backoff_base_seconds: float = 0.5
+    incident_grouping_window_seconds: int = 900
 
 
     @classmethod

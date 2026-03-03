@@ -22,12 +22,14 @@ GuardIntent is a CLI security automation and triage framework for SOC-style work
   - Example plugin: `plugins/sample_custom_rule.py`
 - Scoring and triage
   - Severity: low, medium, high, critical
+  - Graph-based incident grouping with temporal window correlation
 - Report generation
   - Markdown, JSON, HTML dashboard
 - Optional enrich/export integrations
   - VirusTotal enrichment (`--enrich-vt`, API key required)
   - Webhook export (`--webhook-url`)
   - Jira issue creation (`--jira-*`)
+  - Retry/backoff and rate-limit handling for external integrations
 - Delivery tooling
   - Dockerfile
   - GitHub Actions CI workflow
@@ -158,8 +160,8 @@ GitHub Actions workflow at `.github/workflows/ci.yml` runs tests on Python 3.10,
 
 ## Current Gaps / Next Improvements
 
-- Add retry/backoff and rate-limit handling for VirusTotal/Jira/webhook requests.
-- Add richer IOC extraction for enrichment beyond direct IOC match evidence.
-- Add ATT&CK tactic metadata (not only technique IDs).
-- Improve incident grouping strategy with temporal windows and graph-based entities.
-- Expand test coverage for integration failure paths and report rendering edge cases.
+- Add ATT&CK tactic-to-technique validation against an external ATT&CK dataset.
+- Add circuit-breaker behavior for repeated integration outages.
+- Improve grouping precision with source-specific graph weights and confidence scores.
+- Add snapshot tests for full Markdown/HTML report rendering.
+- Add benchmark tests for large log files and high-cardinality IOC sets.

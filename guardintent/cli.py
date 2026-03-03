@@ -84,6 +84,8 @@ def rules_command(
         console.print(target.description)
         if target.mitre_techniques:
             console.print(f"mitre: {', '.join(target.mitre_techniques)}")
+        if target.mitre_tactics:
+            console.print(f"tactics: {', '.join(target.mitre_tactics)}")
         return
     raise typer.BadParameter("Use --list or --show <rule_id>")
 
@@ -135,15 +137,20 @@ def scan(
         if verbose:
             console.print(f"Rule {rule.rule_id}: {len(rule_hits)} hit(s)")
 
-    incidents = aggregate_hits(hits)
+    incidents = aggregate_hits(hits, grouping_window_seconds=cfg.incident_grouping_window_seconds)
     incidents = filter_by_min_severity(incidents, min_severity)
 
     vt_enabled = enrich_vt or cfg.enrich_virustotal
     vt_key = vt_api_key or cfg.virustotal_api_key
-    vt_client = VirusTotalClient(vt_key)
+    vt_client = VirusTotalClient(
+        vt_key,
+        timeout=cfg.integration_timeout_seconds,
+        max_retries=cfg.integration_max_retries,
+        backoff_base_seconds=cfg.integration_backoff_base_seconds,
+    )
     if vt_enabled and vt_client.enabled():
         for incident in incidents:
-            ioc_candidates = sorted(collect_iocs_for_enrichment(incident.evidence))[:enrich_limit]
+            ioc_candidates = sorted(collect_iocs_for_enrichment(incident.evidence, incident.entities))[:enrich_limit]
             vt_results = []
             for value in ioc_candidates:
                 result = vt_client.lookup_ioc(value)
@@ -183,7 +190,13 @@ def scan(
 
     effective_webhook = webhook_url or cfg.export_webhook_url
     if effective_webhook:
-        posted = post_webhook(effective_webhook, incidents)
+        posted = post_webhook(
+            effective_webhook,
+            incidents,
+            timeout=cfg.integration_timeout_seconds,
+            max_retries=cfg.integration_max_retries,
+            backoff_base_seconds=cfg.integration_backoff_base_seconds,
+        )
         if verbose:
             console.print(f"Webhook export {'succeeded' if posted else 'failed'}: {effective_webhook}")
 
@@ -202,6 +215,9 @@ def scan(
             jira_cfg["project_key"],
             jira_cfg["issue_type"],
             incidents,
+            timeout=cfg.integration_timeout_seconds,
+            max_retries=cfg.integration_max_retries,
+            backoff_base_seconds=cfg.integration_backoff_base_seconds,
         )
         if verbose:
             console.print(f"Jira issues created: {len(created)}")

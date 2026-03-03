@@ -17,6 +17,7 @@ class BruteForceRule(BaseRule):
     name = "Brute-Force Attempts"
     description = "Detects repeated failed logins from same user or source IP"
     mitre_techniques = ["T1110"]
+    mitre_tactics = ["Credential Access"]
 
     def run(self, events: list[Event], config: Config, **kwargs) -> list[RuleHit]:
         failures = [
@@ -49,7 +50,9 @@ class BruteForceRule(BaseRule):
                             },
                             recommendation="Reset credentials, enforce MFA, and block abusive source.",
                             entities={"src_ip": event.src_ip, "user": event.username},
+                            timestamp=event.timestamp,
                             mitre_techniques=self.mitre_techniques,
+                            mitre_tactics=self.mitre_tactics,
                         )
                     )
                     break

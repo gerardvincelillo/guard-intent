@@ -18,9 +18,12 @@ def write_json_report(path: str | Path, incidents: list[Incident], run_meta: dic
                 "score": i.score,
                 "rule_hits": i.rule_hits,
                 "entities": i.entities,
+                "first_seen": i.first_seen,
+                "last_seen": i.last_seen,
                 "evidence": i.evidence,
                 "recommendations": i.recommendations,
                 "mitre_techniques": i.mitre_techniques,
+                "mitre_tactics": i.mitre_tactics,
                 "enrichments": i.enrichments,
             }
             for i in incidents
