@@ -1,4 +1,4 @@
-﻿# GuardIntent
+# GuardIntent
 
 GuardIntent is a CLI security automation and triage framework for SOC-style workflows. It ingests logs, correlates IOC feeds, runs rule detections, scores incidents, enriches findings, and exports incident reports.
 
@@ -38,7 +38,7 @@ GuardIntent is a CLI security automation and triage framework for SOC-style work
 
 ```text
 GuardIntent/
-|-- guardintent/
+|-- guard_intent/
 |   |-- cli.py
 |   |-- config.py
 |   |-- models.py
@@ -165,4 +165,5 @@ GitHub Actions workflow at `.github/workflows/ci.yml` runs tests on Python 3.10,
 - Improve grouping precision with source-specific graph weights and confidence scores.
 - Add snapshot tests for full Markdown/HTML report rendering.
 - Add benchmark tests for large log files and high-cardinality IOC sets.
+
 

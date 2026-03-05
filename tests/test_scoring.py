@@ -1,5 +1,5 @@
-from guardintent.models import RuleHit
-from guardintent.scoring import aggregate_hits
+from guard_intent.models import RuleHit
+from guard_intent.scoring import aggregate_hits
 
 
 def _hit(rule_id: str, ts: str, entities: dict[str, str], score: int = 10) -> RuleHit:
@@ -30,3 +30,4 @@ def test_aggregate_hits_groups_by_graph_and_time_window():
     assert incidents[0].score == 75
     assert incidents[0].first_seen is not None
     assert incidents[0].last_seen is not None
+

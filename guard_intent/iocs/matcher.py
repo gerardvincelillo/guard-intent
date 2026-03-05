@@ -1,6 +1,6 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
-from guardintent.models import Event
+from guard_intent.models import Event
 
 
 def match_iocs(event: Event, iocs: dict[str, set[str]]) -> list[dict[str, str]]:
@@ -17,3 +17,4 @@ def match_iocs(event: Event, iocs: dict[str, set[str]]) -> list[dict[str, str]]:
             if value and value in feed:
                 matches.append({"type": ioc_type, "value": value})
     return matches
+

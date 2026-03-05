@@ -16,12 +16,13 @@ dependencies = [
 ]
 
 [project.scripts]
-guardintent = "guardintent.cli:app"
+guardintent = "guard_intent.cli:app"
 
 [tool.setuptools.packages.find]
-include = ["guardintent*"]
+include = ["guard_intent*"]
 exclude = ["data*", "reports*", "tests*"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+

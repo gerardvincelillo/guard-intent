@@ -5,7 +5,7 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 
-from guardintent.rules.base import BaseRule
+from guard_intent.rules.base import BaseRule
 
 
 def load_plugin_rules(paths: list[str]) -> list[type[BaseRule]]:
@@ -27,3 +27,4 @@ def load_plugin_rules(paths: list[str]) -> list[type[BaseRule]]:
             if isinstance(rule_cls, type) and issubclass(rule_cls, BaseRule):
                 loaded.append(rule_cls)
     return loaded
+

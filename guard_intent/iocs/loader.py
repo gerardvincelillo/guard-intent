@@ -1,9 +1,9 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 from pathlib import Path
 
-from guardintent.iocs.validator import classify_ioc
+from guard_intent.iocs.validator import classify_ioc
 
 
 def _flatten_json_values(payload: object) -> list[str]:
@@ -38,3 +38,4 @@ def load_iocs(path: str) -> dict[str, set[str]]:
 
 def ioc_stats(iocs: dict[str, set[str]]) -> dict[str, int]:
     return {k: len(v) for k, v in iocs.items()}
+

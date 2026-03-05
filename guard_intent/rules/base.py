@@ -1,9 +1,9 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from guardintent.config import Config
-from guardintent.models import Event, RuleHit
+from guard_intent.config import Config
+from guard_intent.models import Event, RuleHit
 
 
 class BaseRule(ABC):
@@ -19,10 +19,11 @@ class BaseRule(ABC):
 
 
 def available_rules() -> list[type[BaseRule]]:
-    from guardintent.rules.brute_force import BruteForceRule
-    from guardintent.rules.ioc_match import IOCMatchRule
-    from guardintent.rules.lateral_movement import LateralMovementRule
-    from guardintent.rules.privileged_abnormal import PrivilegedAbnormalRule
-    from guardintent.rules.rare_process import RareProcessRule
+    from guard_intent.rules.brute_force import BruteForceRule
+    from guard_intent.rules.ioc_match import IOCMatchRule
+    from guard_intent.rules.lateral_movement import LateralMovementRule
+    from guard_intent.rules.privileged_abnormal import PrivilegedAbnormalRule
+    from guard_intent.rules.rare_process import RareProcessRule
 
     return [IOCMatchRule, BruteForceRule, PrivilegedAbnormalRule, RareProcessRule, LateralMovementRule]
+

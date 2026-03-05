@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 from pathlib import Path
@@ -7,19 +7,19 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from guardintent.config import Config
-from guardintent.enrichment.virustotal import VirusTotalClient, collect_iocs_for_enrichment
-from guardintent.iocs.loader import ioc_stats, load_iocs
-from guardintent.integrations.exporters import create_jira_issues, post_webhook
-from guardintent.models import RuleHit
-from guardintent.normalize.normalizer import parse_logs
-from guardintent.plugins.loader import load_plugin_rules
-from guardintent.reporting.html import write_html_report
-from guardintent.reporting.json import write_json_report
-from guardintent.reporting.markdown import write_markdown_report
-from guardintent.rules.base import available_rules
-from guardintent.scoring import aggregate_hits, filter_by_min_severity
-from guardintent.utils import ensure_dir, now_utc_iso, ts_for_filename
+from guard_intent.config import Config
+from guard_intent.enrichment.virustotal import VirusTotalClient, collect_iocs_for_enrichment
+from guard_intent.iocs.loader import ioc_stats, load_iocs
+from guard_intent.integrations.exporters import create_jira_issues, post_webhook
+from guard_intent.models import RuleHit
+from guard_intent.normalize.normalizer import parse_logs
+from guard_intent.plugins.loader import load_plugin_rules
+from guard_intent.reporting.html import write_html_report
+from guard_intent.reporting.json import write_json_report
+from guard_intent.reporting.markdown import write_markdown_report
+from guard_intent.rules.base import available_rules
+from guard_intent.scoring import aggregate_hits, filter_by_min_severity
+from guard_intent.utils import ensure_dir, now_utc_iso, ts_for_filename
 
 app = typer.Typer(help="GuardIntent CLI: security automation and triage framework")
 console = Console()
@@ -171,13 +171,13 @@ def scan(
 
     written: list[Path] = []
     if "md" in formats:
-        md_path = output_dir / f"guardintent_report_{stamp}.md"
+        md_path = output_dir / f"guard_intent_report_{stamp}.md"
         written.append(write_markdown_report(md_path, incidents, run_meta))
     if "json" in formats:
-        json_path = output_dir / f"guardintent_report_{stamp}.json"
+        json_path = output_dir / f"guard_intent_report_{stamp}.json"
         written.append(write_json_report(json_path, incidents, run_meta))
     if "html" in formats:
-        html_path = output_dir / f"guardintent_report_{stamp}.html"
+        html_path = output_dir / f"guard_intent_report_{stamp}.html"
         written.append(write_html_report(html_path, incidents, run_meta))
 
     console.print(f"[green]Incidents generated:[/green] {len(incidents)}")
@@ -225,3 +225,4 @@ def scan(
 
 if __name__ == "__main__":
     app()
+

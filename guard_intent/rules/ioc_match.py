@@ -1,9 +1,9 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
-from guardintent.config import Config
-from guardintent.iocs.matcher import match_iocs
-from guardintent.models import Event, RuleHit
-from guardintent.rules.base import BaseRule
+from guard_intent.config import Config
+from guard_intent.iocs.matcher import match_iocs
+from guard_intent.models import Event, RuleHit
+from guard_intent.rules.base import BaseRule
 
 
 class IOCMatchRule(BaseRule):
@@ -34,3 +34,4 @@ class IOCMatchRule(BaseRule):
                 )
             )
         return hits
+

@@ -1,11 +1,11 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import csv
 from pathlib import Path
 
-from guardintent.models import Event
-from guardintent.normalize.base import BaseParser
-from guardintent.normalize.normalizer import normalize_record
+from guard_intent.models import Event
+from guard_intent.normalize.base import BaseParser
+from guard_intent.normalize.normalizer import normalize_record
 
 
 class CSVParser(BaseParser):
@@ -17,3 +17,4 @@ class CSVParser(BaseParser):
             for row in reader:
                 events.append(normalize_record(row))
         return events
+

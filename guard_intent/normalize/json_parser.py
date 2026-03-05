@@ -1,11 +1,11 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 from pathlib import Path
 
-from guardintent.models import Event
-from guardintent.normalize.base import BaseParser
-from guardintent.normalize.normalizer import normalize_record
+from guard_intent.models import Event
+from guard_intent.normalize.base import BaseParser
+from guard_intent.normalize.normalizer import normalize_record
 
 
 class JSONParser(BaseParser):
@@ -19,3 +19,4 @@ class JSONParser(BaseParser):
             raw = json.loads(line)
             events.append(normalize_record(raw))
         return events
+

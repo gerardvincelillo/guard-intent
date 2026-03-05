@@ -1,9 +1,9 @@
 import io
 from urllib import error
 
-import guardintent.enrichment.virustotal as vt
-import guardintent.integrations.exporters as exporters
-from guardintent.models import Incident
+import guard_intent.enrichment.virustotal as vt
+import guard_intent.integrations.exporters as exporters
+from guard_intent.models import Incident
 
 
 class _Resp:
@@ -76,3 +76,4 @@ def test_jira_create_handles_non_json_response(monkeypatch):
         max_retries=0,
     )
     assert created == []
+

@@ -1,10 +1,10 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from guardintent.config import Config
-from guardintent.models import Event, RuleHit
-from guardintent.rules.base import BaseRule
+from guard_intent.config import Config
+from guard_intent.models import Event, RuleHit
+from guard_intent.rules.base import BaseRule
 
 
 def _parse_ts(ts: str) -> datetime:
@@ -54,3 +54,4 @@ class LateralMovementRule(BaseRule):
                     )
                     break
         return hits
+

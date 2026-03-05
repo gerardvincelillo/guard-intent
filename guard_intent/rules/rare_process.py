@@ -1,10 +1,10 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from collections import Counter
 
-from guardintent.config import Config
-from guardintent.models import Event, RuleHit
-from guardintent.rules.base import BaseRule
+from guard_intent.config import Config
+from guard_intent.models import Event, RuleHit
+from guard_intent.rules.base import BaseRule
 
 
 class RareProcessRule(BaseRule):
@@ -36,3 +36,4 @@ class RareProcessRule(BaseRule):
                     )
                 )
         return hits
+

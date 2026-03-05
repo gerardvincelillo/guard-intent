@@ -1,4 +1,4 @@
-from guardintent.enrichment.virustotal import collect_iocs_for_enrichment
+from guard_intent.enrichment.virustotal import collect_iocs_for_enrichment
 
 
 def test_collect_iocs_for_enrichment_extracts_nested_values():
@@ -22,3 +22,4 @@ def test_collect_iocs_for_enrichment_extracts_nested_values():
     assert "malicious.example" in iocs
     assert "https://evil.example/payload" in iocs
     assert ("a" * 64) in iocs
+

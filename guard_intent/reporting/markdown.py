@@ -1,8 +1,8 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from pathlib import Path
 
-from guardintent.models import Incident
+from guard_intent.models import Incident
 
 
 def _section(title: str) -> str:
@@ -90,3 +90,4 @@ def write_markdown_report(path: str | Path, incidents: list[Incident], run_meta:
 
     p.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return p
+

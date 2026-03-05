@@ -3,7 +3,7 @@ from __future__ import annotations
 from html import escape
 from pathlib import Path
 
-from guardintent.models import Incident
+from guard_intent.models import Incident
 
 
 def write_html_report(path: str | Path, incidents: list[Incident], run_meta: dict) -> Path:
@@ -71,3 +71,4 @@ def write_html_report(path: str | Path, incidents: list[Incident], run_meta: dic
 
     p.write_text(html, encoding="utf-8")
     return p
+

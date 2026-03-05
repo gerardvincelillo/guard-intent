@@ -1,8 +1,8 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from pathlib import Path
 
-from guardintent.models import Event
+from guard_intent.models import Event
 
 
 def _first(raw: dict, keys: list[str], default: str | None = None) -> str | None:
@@ -59,11 +59,12 @@ def parse_logs(path: str | Path) -> list[Event]:
     p = Path(path)
     suffix = p.suffix.lower()
     if suffix in {".jsonl", ".json"}:
-        from guardintent.normalize.json_parser import JSONParser
+        from guard_intent.normalize.json_parser import JSONParser
 
         return JSONParser().parse(path)
     if suffix == ".csv":
-        from guardintent.normalize.csv_parser import CSVParser
+        from guard_intent.normalize.csv_parser import CSVParser
 
         return CSVParser().parse(path)
     raise ValueError(f"Unsupported log file: {path}")
+

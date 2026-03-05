@@ -7,7 +7,7 @@ import time
 from typing import Any
 from urllib import error, request
 
-from guardintent.iocs.validator import classify_ioc
+from guard_intent.iocs.validator import classify_ioc
 
 _IPV4_CANDIDATE = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
 _HASH_CANDIDATE = re.compile(r"\b[a-fA-F0-9]{64}\b")
@@ -123,3 +123,4 @@ def collect_iocs_for_enrichment(
                 values.add(candidate)
 
     return values
+

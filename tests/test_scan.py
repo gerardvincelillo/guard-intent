@@ -3,7 +3,7 @@ from pathlib import Path
 
 from typer.testing import CliRunner
 
-from guardintent.cli import app
+from guard_intent.cli import app
 
 
 runner = CliRunner()
@@ -68,3 +68,4 @@ def test_scan_supports_html_and_plugin_rule(tmp_path: Path):
     payload = json.loads(json_reports[0].read_text(encoding="utf-8"))
     all_rule_hits = [rule for incident in payload["incidents"] for rule in incident["rule_hits"]]
     assert "suspicious_domain_burst" in all_rule_hits
+

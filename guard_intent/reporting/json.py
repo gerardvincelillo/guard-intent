@@ -1,9 +1,9 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 from pathlib import Path
 
-from guardintent.models import Incident
+from guard_intent.models import Incident
 
 
 def write_json_report(path: str | Path, incidents: list[Incident], run_meta: dict) -> Path:
@@ -31,3 +31,4 @@ def write_json_report(path: str | Path, incidents: list[Incident], run_meta: dic
     }
     p.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return p
+

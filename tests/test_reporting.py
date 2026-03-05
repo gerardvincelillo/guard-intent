@@ -1,9 +1,9 @@
 import json
 from pathlib import Path
 
-from guardintent.reporting.html import write_html_report
-from guardintent.reporting.json import write_json_report
-from guardintent.reporting.markdown import write_markdown_report
+from guard_intent.reporting.html import write_html_report
+from guard_intent.reporting.json import write_json_report
+from guard_intent.reporting.markdown import write_markdown_report
 
 
 def test_reports_handle_empty_incident_list(tmp_path: Path):
@@ -23,3 +23,4 @@ def test_reports_handle_empty_incident_list(tmp_path: Path):
 
     payload = json.loads(json_path.read_text(encoding="utf-8"))
     assert payload["incident_count"] == 0
+

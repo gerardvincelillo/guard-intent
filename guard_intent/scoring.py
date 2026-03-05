@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import defaultdict
 from datetime import datetime, timezone
 
-from guardintent.models import Incident, RuleHit
+from guard_intent.models import Incident, RuleHit
 
 
 def severity_from_score(score: int) -> str:
@@ -170,3 +170,4 @@ def filter_by_min_severity(incidents: list[Incident], min_severity: str) -> list
     rank = {"low": 0, "medium": 1, "high": 2, "critical": 3}
     threshold = rank[min_severity.lower()]
     return [i for i in incidents if rank[i.severity] >= threshold]
+

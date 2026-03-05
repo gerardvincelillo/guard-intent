@@ -6,7 +6,7 @@ import time
 from typing import Any
 from urllib import error, request
 
-from guardintent.models import Incident
+from guard_intent.models import Incident
 
 
 def _request_with_retry(req: request.Request, timeout: int, max_retries: int, backoff_base_seconds: float) -> bytes | None:
@@ -40,7 +40,7 @@ def post_webhook(
     backoff_base_seconds: float = 0.5,
 ) -> bool:
     payload = {
-        "source": "guardintent",
+        "source": "guard_intent",
         "incident_count": len(incidents),
         "incidents": [
             {
@@ -113,3 +113,4 @@ def create_jira_issues(
         except json.JSONDecodeError:
             continue
     return created
+
