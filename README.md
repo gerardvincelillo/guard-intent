@@ -172,6 +172,7 @@ GitHub Actions workflow at `.github/workflows/ci.yml` runs tests on Python 3.10,
 ## Docs
 
 - `docs/README.md`: docs index for the repository
-- `docs/IMPLEMENTATION-CHECKLIST.md`
-- `docs/PROJECT-VISION.md`
-- `docs/STACK-INVENTORY.md`
+- `docs/implementation_checklist.md`
+- `docs/project_vision.md`
+- `docs/stack_inventory.md`
+
